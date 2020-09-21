@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2020/09/20/Experience/</loc>
+    
+    <lastmod>2020-09-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
     <lastmod>2020-09-21</lastmod>
@@ -37,13 +44,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2020/09/20/Experience/</loc>
-    
-    <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://example.com/2020/09/20/hello-world/</loc>
     
     <lastmod>2020-09-20</lastmod>
@@ -65,20 +65,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>http://example.com/tags/travel/</loc>
-    <lastmod>2020-09-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/experience/</loc>
-    <lastmod>2020-09-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>http://example.com/tags/DeepLearning/</loc>
@@ -108,17 +94,31 @@
     <priority>0.6</priority>
   </url>
   
-
-  
   <url>
-    <loc>http://example.com/categories/travel/</loc>
+    <loc>http://example.com/tags/Travel/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
+    <loc>http://example.com/tags/Experience/</loc>
+    <lastmod>2020-09-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
     <loc>http://example.com/categories/Transfer-Learning-for-QA/</loc>
+    <lastmod>2020-09-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/Travel/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
