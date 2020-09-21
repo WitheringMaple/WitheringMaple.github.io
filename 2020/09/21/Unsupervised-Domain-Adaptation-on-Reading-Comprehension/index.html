@@ -401,7 +401,7 @@
 <li>实验发现迁移的效果与源域和目标域的数据问题形式高度相关，问题形式一致语料的迁移效果最好（如CNN和DailyMail的问题都是完型填空类型）。</li>
 </ol>
 <h2 id="Model">Model</h2>
-<p><img src="./Unsupervised-Domain-Adaptation-on-Reading-Comprehension/Fig1.jpg" alt="Fig1"></p>
+<p><img src="/img/Experience/Fig1.jpg" alt="Fig1"></p>
 <p>由上图可知，该模型首先在源域数据集$x$上进行训练，然后交替进行目标域数据训练以及条件对抗学习。首先用预训练的BERT获得特征$\bar{\text{f}}$，然后过一个batch normalization得到<strong>f</strong>，再添加一个输出为2维向量的单层线性网络，其中一个用于答案开始logits $g^s$，另一个为答案结束logits $g^e$，然后使用交叉熵作为第一阶段训练的目标函数。</p>
 <p>之后在目标域数据集$x’$上进行自训练。特别地，作者做了一个假设，即不同域共享相似的特性，即预测的答案与新域的正确答案范围类或者相同。在模型为每个答案开始和结束位置生成概率时，作者采用一个阈值$T_{prob}$来过滤低置信度样本。此外，由于篇章较长，在所有logits上使用softmax会使得生成得概率之间数值差异较小，从而作者提出先选择$n_{best}$个开始和结束索引概率和最大的索引对  ：<br>
 $$<br>
@@ -414,7 +414,7 @@ $$<br>
 从而将概率大于阈值$T_{prob}$的伪标注样本保留，实验分析阈值在0.3-0.4之间效果最好。</p>
 <p>其实一开始就能获得开始和结束所以概率和最大的对，之所以还要选择 $n_{best}-1$个，是为了用softmax求得  。文章将超参  $n_{best}$设为20，没有对应的实验分析。特别地，在每轮自训练中，只保留最后一个模型产生的伪标注样本。</p>
 <p>之后作者采用Long等人于2018 NeurIPS提出的条件对抗网络CDAN，其融合了之前所说的<strong>f</strong>和<strong>g</strong>。结构如下：</p>
-<p><img src="./Unsupervised-Domain-Adaptation-on-Reading-Comprehension/Fig2.jpg" alt=""></p>
+<p><img src="/img/Experience/Fig2.jpg" alt=""></p>
 <p>这里判别器$D$的条件为<strong>g</strong>，采用的方法为多线性映射，即两个向量的外积。但由于这里存在维度爆炸的情况，采用了一种随机方法来近似：<br>
 $$<br>
 &lt;\text{f}\otimes\text{g},\text{f’}\otimes\text{g’}&gt;\approx&lt;Z_{R}(\text{f},\text{g}),Z_{R}(\text{f’},\text{g’})&gt;<br>
