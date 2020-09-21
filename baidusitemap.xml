@@ -12,4 +12,8 @@
     <loc>http://example.com/2020/09/20/hello-world/</loc>
     <lastmod>2020-09-20</lastmod>
   </url>
+  <url>
+    <loc>http://example.com/2020/04/17/Hexo-Theme-LiveMyLife/</loc>
+    <lastmod>2020-09-19</lastmod>
+  </url>
 </urlset> 
