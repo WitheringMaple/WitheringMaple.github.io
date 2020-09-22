@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     
   </url>
   
@@ -67,7 +67,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,56 +75,56 @@
   
   <url>
     <loc>http://example.com/tags/Travel/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Experience/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/DeepLearning/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/TransferLearning/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/NaturalLanguageProcessing/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/QuestionAnswering/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Hexo/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Hexo-Theme-LiveMyLife/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -133,21 +133,21 @@
   
   <url>
     <loc>http://example.com/categories/Travel/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Transfer-Learning-for-QA/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Hexo-Theme-LiveMyLife/</loc>
-    <lastmod>2020-09-21</lastmod>
+    <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
