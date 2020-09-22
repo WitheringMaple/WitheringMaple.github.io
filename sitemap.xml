@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://witheringmaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/</loc>
+    
+    <lastmod>2020-09-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
     <lastmod>2020-09-22</lastmod>
@@ -101,6 +108,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://witheringmaple.github.io/tags/MachineTranslation/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -112,6 +126,13 @@
   
   <url>
     <loc>http://witheringmaple.github.io/categories/Transfer-Learning-for-QA/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://witheringmaple.github.io/categories/UnsupervisedQuestionAnswering/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

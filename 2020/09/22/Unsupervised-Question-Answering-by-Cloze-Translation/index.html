@@ -71,12 +71,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../css/highlight.css">
-<link rel="stylesheet" href="../css/widget.css">
-<link rel="stylesheet" href="../css/rocket.css">
-<link rel="stylesheet" href="../css/signature.css">
-<link rel="stylesheet" href="../css/catalog.css">
-<link rel="stylesheet" href="../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -138,10 +138,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://WitheringMaple.github.io/categories/">
+  <link rel="canonical" href="http://WitheringMaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
   <title>
     
-    Categories - freedom
+    Unsupervised Question Answering by Cloze Translation - freedom
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -280,8 +280,8 @@
   <!-- CDN: jsdelivr start -->
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/category.jpg');
+       /*post*/
+        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/post.jpg');
       
     }
 
@@ -300,10 +300,46 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Categories</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">What are you looking for? My past...</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+              
+              <a class="tag" href="/tags/#NaturalLanguageProcessing" title="NaturalLanguageProcessing">NaturalLanguageProcessing</a>
+              
+              <a class="tag" href="/tags/#QuestionAnswering" title="QuestionAnswering">QuestionAnswering</a>
+              
+              <a class="tag" href="/tags/#MachineTranslation" title="MachineTranslation">MachineTranslation</a>
+              
+            </div>
+            <h1>Unsupervised Question Answering by Cloze Translation</h1>
+            <h2 class="subheading">reading note</h2>
+            <span class="meta">
+              Posted by You Hao on
+              2020-09-22
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">3</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">993</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -344,105 +380,263 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <!-- 标签云 -->
-      <div id='tag_cloud' class="tags">
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>获取问答的训练数据费时费力，尤其是对于很多<strong>新领域</strong>或者<strong>语言</strong>，因此作者研究在完全没有训练数据（上下文-问题-答案）的情况下如何解决<strong>抽取式问答</strong>任务。</p>
+<h1 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h1><ol>
+<li>首次提出用于无监督问答的方法，即使用无监督机器翻译方法将生成的完形填空类型问题转化为自然问题。</li>
+<li>提出四种针对答案被隐藏的完形填空类型问题翻译成自然问题的方法，并且通过消融实验分析各种算法对性能的影响。</li>
+<li>该架构具有较强的灵活性和扩展性，可以直接将生成的训练数据用于已有问答模型或者预训练模型。</li>
+<li>将该方法用于少样本学习，并且实验证明该方法对少样本学习的有效性。</li>
+</ol>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="Fig1.png" alt="Fig1"></p>
+<p>由上图可知，传统的抽取式问答是根据问题以及上下文求得答案，而文章提出的无监督问答首先采样上下文段落抽取答案（命名实体或者名词短语），然后根据上下文和抽取的答案生成完形填空式问题，然后将该问题翻译成自然问题。注意，在答案的抽取过程中，默认上下文与答案是对应的，但该过程不要求问题与答案或者问题与上下文对齐。</p>
+<h3 id="答案生成"><a href="#答案生成" class="headerlink" title="答案生成"></a>答案生成</h3><p>首先从给定的文档中以合适的长度（文中未细说）均匀采样段落，然后通过分块算法来获取名词短语或者根据NER系统来获取命名实体（均使用均匀采样）。</p>
+<h3 id="问题生成"><a href="#问题生成" class="headerlink" title="问题生成"></a>问题生成</h3><h4 id="问题生成-1"><a href="#问题生成-1" class="headerlink" title="问题生成"></a>问题生成</h4><p>文章首先使用启发式方法来生成完型填空式类型问题，即根据之前获得的上下文-答案对，使用整个句子或者基于英文句法解析器获得句子中的子句，将其中的答案mask。</p>
+<h4 id="完型填空式问题翻译"><a href="#完型填空式问题翻译" class="headerlink" title="完型填空式问题翻译"></a>完型填空式问题翻译</h4><p>提出四种方法，即恒等映射(Identity Mapping)，引入噪声(Noisy Clozes)，基于规则方法(Rule-Based)，序列到序列的无监督机器翻译(Seq2Seq)。</p>
+<p>Identity Mapping则直接采用随机或者启发式方法将wh*类型的单词如who，where等替代mask token。</p>
+<p>Noisy Clozes则是先从生成的问题中删除mask token，再用Lample等人[1]于2018年提出的简单噪声函数，然后使用随机或者启发式方法在问题前添加wh*类型单词并且再加一个问号。</p>
+<p>Rule-Based则直接采用Heilman和Smith[2]于2010年提出的陈述句转化为问句的规则方法。</p>
+<p>Seq2Seq方法采用无监督神经机器翻译NMT，该方法的目的在于学习一个函数即在生成的完型填空式问题以及自然问题之间映射，该函数不需要对齐的语料（即源语言句子与目标语言句子之间不是平行的）。在创建语料时，如果答案是实体类型，则需要使用特定类型的mask token：</p>
+<p><img src="Tab1.png" alt="Tab1"></p>
+<p>采用的NMT是结合了去噪自编码器的域内训练以及在线反翻译的跨域训练。Identity Mapping以及Noisy Clozes中的启发式方法是利用上表中的答案类型对应的合适的wh*。此外，在NMT训练过程中，作者也应用该启发式规则，即将答案类型token添加到目标问题的wh*单词前。</p>
+<p><strong>文章：</strong>Unsupervised Question Answering by Cloze Translation[3]（ACL 2019）</p>
+<p><strong>参考文献</strong></p>
+<p>[1]: Lample G, Ott M, Conneau A, et al. Phrase-based &amp; neural unsupervised machine translation[J]. arXiv preprint arXiv:1804.07755, 2018.</p>
+<p>[2]: Heilman M, Smith N A. Good question! statistical ranking for question generation[C]//Human Language Technologies: The 2010 Annual Conference of the North American Chapter of the Association for Computational Linguistics. 2010: 609-617.</p>
+<p>[3]: Lewis P, Denoyer L, Riedel S. Unsupervised question answering by cloze translation[J]. arXiv preprint arXiv:1906.04980, 2019.</p>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/" data-toggle="tooltip" data-placement="top" title="Unsupervised Domain Adaptation on Reading Comprehension">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
         
-        <a href="#Travel" title="Travel" rel="1">Travel</a>
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
         
-        <a href="#Transfer Learning for QA" title="Transfer Learning for QA" rel="1">Transfer Learning for QA</a>
+
         
-        <a href="#UnsupervisedQuestionAnswering" title="UnsupervisedQuestionAnswering" rel="1">UnsupervisedQuestionAnswering</a>
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Unsupervised Question Answering by Cloze Translation&body=Hi,I found this website and thought you might like it http://WitheringMaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
         
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+<!-- gitalk start -->
+<!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+<div id="gitalk-container"></div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+<script src="/js/comment/gitalk.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'c8a7e6298a03d819661c',
+    clientSecret: '53619776d8b5094ecf23a7cc59568cfcaebb1cf0',
+    repo: 'comment',
+    owner: 'WitheringMaple',
+    admin: 'comment',
+    id: 'Tue Sep 22 2020 19:16:55 GMT+0800', // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    perPage: 10 ,
+    pagerDirection: 'last',
+    createIssueManually: false ,
+    language: 'en'
+  });
+  gitalk.render('gitalk-container');
+
+  var gtFolded = () => {
+    setTimeout(function() {
+      let markdownBody = document.getElementsByClassName("markdown-body");
+      let list = Array.from(markdownBody);
+      list.forEach(item => {
+        if (item.clientHeight > 250) {
+          item.classList.add('gt-comment-body-folded');
+          item.style.maxHeight = '250px';
+          item.title = 'Click to Expand';
+          item.onclick = function() {
+            item.classList.remove('gt-comment-body-folded');
+            item.style.maxHeight = '';
+            item.title = '';
+            item.onclick = null;
+          };
+        }
+      })
+    }, 800);
+  }
+</script>
+
+<!-- gitalk end -->
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
       </div>
 
-      <!-- 标签列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Travel">
-          <span class="tag-text">Travel</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/09/20/Experience/">
-            <h2 class="post-title">
-              Experience
-            </h2>
-            
-            <h3 class="post-subtitle">
-              时空变换
-            </h3>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Transfer Learning for QA">
-          <span class="tag-text">Transfer Learning for QA</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/">
-            <h2 class="post-title">
-              Unsupervised Domain Adaptation on Reading Comprehension
-            </h2>
-            
-            <h3 class="post-subtitle">
-              reading note
-            </h3>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="UnsupervisedQuestionAnswering">
-          <span class="tag-text">UnsupervisedQuestionAnswering</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
-            <h2 class="post-title">
-              Unsupervised Question Answering by Cloze Translation
-            </h2>
-            
-            <h3 class="post-subtitle">
-              reading note
-            </h3>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Motivation"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Motivation</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Contribution"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Contribution</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Model"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Model</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#整体架构"><span class="toc-nav-number">3.0.1.</span> <span class="toc-nav-text">整体架构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#答案生成"><span class="toc-nav-number">3.0.2.</span> <span class="toc-nav-text">答案生成</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题生成"><span class="toc-nav-number">3.0.3.</span> <span class="toc-nav-text">问题生成</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#问题生成-1"><span class="toc-nav-number">3.0.3.1.</span> <span class="toc-nav-text">问题生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#完型填空式问题翻译"><span class="toc-nav-number">3.0.3.2.</span> <span class="toc-nav-text">完型填空式问题翻译</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#DeepLearning" title="DeepLearning">DeepLearning</a>
+            
+            <a class="tag" href="/tags/#NaturalLanguageProcessing" title="NaturalLanguageProcessing">NaturalLanguageProcessing</a>
+            
+            <a class="tag" href="/tags/#QuestionAnswering" title="QuestionAnswering">QuestionAnswering</a>
+            
+            <a class="tag" href="/tags/#MachineTranslation" title="MachineTranslation">MachineTranslation</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+      </div>
     </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
@@ -579,7 +773,7 @@
     let jsdelivr = "https://cdn.jsdelivr.net/gh/";
     let gh = "WitheringMaple";
     let ghPages = gh + ".github.io";
-    let pagePath = "categories/index.html";
+    let pagePath = "2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/";
     let jsdelivrurl;
     if (pagePath.indexOf("index.html") != -1) {
       jsdelivrurl = jsdelivr + gh + "/" + ghPages;
