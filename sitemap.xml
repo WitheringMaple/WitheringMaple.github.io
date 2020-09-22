@@ -2,63 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/09/22/test/</loc>
-    
-    <lastmod>2020-09-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/2020/04/17/Hexo-Theme-LiveMyLife/</loc>
+    <loc>http://witheringmaple.github.io/2020/04/17/Hexo-Theme-LiveMyLife/</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/about/index.html</loc>
+    <loc>http://witheringmaple.github.io/about/index.html</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/09/20/Experience/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/20/Experience/</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/archive/index.html</loc>
+    <loc>http://witheringmaple.github.io/archive/index.html</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>http://witheringmaple.github.io/tags/index.html</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>http://witheringmaple.github.io/categories/index.html</loc>
     
     <lastmod>2020-09-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/404.html</loc>
+    <loc>http://witheringmaple.github.io/404.html</loc>
     
     <lastmod>2020-09-19</lastmod>
     
@@ -66,7 +59,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>http://witheringmaple.github.io/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -74,56 +67,56 @@
 
   
   <url>
-    <loc>http://example.com/tags/Travel/</loc>
+    <loc>http://witheringmaple.github.io/tags/Travel/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Experience/</loc>
+    <loc>http://witheringmaple.github.io/tags/Experience/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/DeepLearning/</loc>
+    <loc>http://witheringmaple.github.io/tags/DeepLearning/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/TransferLearning/</loc>
+    <loc>http://witheringmaple.github.io/tags/TransferLearning/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/NaturalLanguageProcessing/</loc>
+    <loc>http://witheringmaple.github.io/tags/NaturalLanguageProcessing/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/QuestionAnswering/</loc>
+    <loc>http://witheringmaple.github.io/tags/QuestionAnswering/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Hexo/</loc>
+    <loc>http://witheringmaple.github.io/tags/Hexo/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Hexo-Theme-LiveMyLife/</loc>
+    <loc>http://witheringmaple.github.io/tags/Hexo-Theme-LiveMyLife/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -132,21 +125,21 @@
 
   
   <url>
-    <loc>http://example.com/categories/Travel/</loc>
+    <loc>http://witheringmaple.github.io/categories/Travel/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Transfer-Learning-for-QA/</loc>
+    <loc>http://witheringmaple.github.io/categories/Transfer-Learning-for-QA/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Hexo-Theme-LiveMyLife/</loc>
+    <loc>http://witheringmaple.github.io/categories/Hexo-Theme-LiveMyLife/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
