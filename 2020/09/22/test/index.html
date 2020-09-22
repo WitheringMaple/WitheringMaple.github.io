@@ -320,7 +320,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">0</span> In Total
+              Words <span class="post-count">460</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -380,7 +380,18 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p><img src="Fig1.jpg" alt="f"></p>
+        <p><img src="Fig1.jpg" alt="f">Motivation</p>
+<ol>
+<li>现实世界中存在很多无标签的数据，而现有的机器阅读理解模型的泛化能力差，即从一个领域学到的知识很难用于其他无标签的数据集的答案预测。甚至即便是BERT这种在巨型无监督数据集上预训练的模型，在某个数据集上微调后用于其他数据集时，性能会急剧降低。</li>
+<li>对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Chung等人[^1]于EMNLP 2018提出的无监督问答迁移学习方法)也没有分析影响迁移性能的可能原因。并且，他们采用的目标数据集是较小的MRC数据集，尚不清楚对大规模数据集进行迁移学习的效果。</li>
+</ol>
+<h2 id="Contribution">Contribution</h2>
+<ol>
+<li>提出一种新的用于MRC的无监督域适应方法(Conditional Adversarial Self-training, CASe)，采用交替训练的方式，在6种数据集上的相关实验结果表明该方法能够使得模型在源数据集训练后在目标数据集上的性能大大提升，并接近有监督方法的性能。</li>
+<li>在自训练的基础上，加入低置信度过滤机制，防止模型学习错误目标领域分布。</li>
+<li>提出使用条件对抗学习(Conditional Adversarial Learning)，即使用结合BERT特征以及BERT最终输出logits的判别器，使得模型学得更一般的表示，防止在自训练产生的伪标签数据上过拟合。</li>
+<li>实验发现迁移的效果与源域和目标域的数据问题形式高度相关，问题形式一致语料的迁移效果最好（如CNN和DailyMail的问题都是完型填空类型）。</li>
+</ol>
 
 
         <hr>
@@ -519,7 +530,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Contribution"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Contribution</span></a></li></ol>
         
         </div>
       </aside>
