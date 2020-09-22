@@ -414,7 +414,7 @@ $$<br>
 从而将概率大于阈值$T_{prob}$的伪标注样本保留，实验分析阈值在0.3-0.4之间效果最好。</p>
 <p>其实一开始就能获得开始和结束所以概率和最大的对，之所以还要选择 $n_{best}-1$个，是为了用softmax求得  。文章将超参  $n_{best}$设为20，没有对应的实验分析。特别地，在每轮自训练中，只保留最后一个模型产生的伪标注样本。</p>
 <p>之后作者采用Long等人[^2]于2018 NeurIPS提出的条件对抗网络CDAN，其融合了之前所说的f和g。结构如下：</p>
-<p><img src="/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/Fig2.jpg" alt="Fig2"><br>
+<p><img src="/img/header_img/post.jpg" alt="Fig2"><br>
 这里判别器$D$的条件为g，采用的方法为多线性映射，即两个向量的外积。但由于这里存在维度爆炸的情况，采用了一种随机方法来近似：<br>
 $$<br>
 \langle\text{f}\otimes\text{g},\text{f}’\otimes\text{g}’\rangle\approx\langle Z_{R}(\text{f},\text{g}),Z_{R}(\text{f}’,\text{g}’)\rangle<br>
