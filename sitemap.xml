@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://witheringmaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -81,35 +81,35 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/tags/DeepLearning/</loc>
+    <loc>http://witheringmaple.github.io/tags/Deep-Learning/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/tags/TransferLearning/</loc>
+    <loc>http://witheringmaple.github.io/tags/Transfer-Learning/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/tags/NaturalLanguageProcessing/</loc>
+    <loc>http://witheringmaple.github.io/tags/Natural-Language-Processing/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/tags/QuestionAnswering/</loc>
+    <loc>http://witheringmaple.github.io/tags/Question-Answering/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/tags/MachineTranslation/</loc>
+    <loc>http://witheringmaple.github.io/tags/Machine-Translation/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -132,7 +132,7 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/categories/UnsupervisedQuestionAnswering/</loc>
+    <loc>http://witheringmaple.github.io/categories/Unsupervised-Question-Answering/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
