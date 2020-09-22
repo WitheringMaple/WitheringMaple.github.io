@@ -384,7 +384,7 @@
 <h2 id="Motivation">Motivation</h2>
 <ol>
 <li>现实世界中存在很多无标签的数据，而现有的机器阅读理解模型的泛化能力差，即从一个领域学到的知识很难用于其他无标签的数据集的答案预测。甚至即便是BERT这种在巨型无监督数据集上预训练的模型，在某个数据集上微调后用于其他数据集时，性能会急剧降低。</li>
-<li>对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Chung等人[^1]于EMNLP 2018提出的无监督问答迁移学习方法)也没有分析影响迁移性能的可能原因。并且，他们采用的目标数据集是较小的MRC数据集，尚不清楚对大规模数据集进行迁移学习的效果。</li>
+<li>对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Chung等人于EMNLP 2018提出的无监督问答迁移学习方法)也没有分析影响迁移性能的可能原因。并且，他们采用的目标数据集是较小的MRC数据集，尚不清楚对大规模数据集进行迁移学习的效果。</li>
 </ol>
 <h2 id="Contribution">Contribution</h2>
 <ol>
@@ -1177,6 +1177,21 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- <img src="http://WitheringMaple.github.io/img/icon_wechat.png" width="0" height="0" /> -->
 	<!-- Migrate from head to bottom, no longer block render and still work -->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
