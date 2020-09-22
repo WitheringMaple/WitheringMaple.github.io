@@ -391,7 +391,7 @@
         <h2 id="Motivation">Motivation</h2>
 <ol>
 <li>现实世界中存在很多无标签的数据，而现有的机器阅读理解模型的泛化能力差，即从一个领域学到的知识很难用于其他无标签的数据集的答案预测。甚至即便是BERT这种在巨型无监督数据集上预训练的模型，在某个数据集上微调后用于其他数据集时，性能会急剧降低。</li>
-<li>对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Chung等人[^1]于EMNLP 2018提出的无监督问答迁移学习方法)也没有分析影响迁移性能的可能原因。并且，他们采用的目标数据集是较小的MRC数据集，尚不清楚对大规模数据集进行迁移学习的效果。</li>
+<li>对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Chung等人[1]于EMNLP 2018提出的无监督问答迁移学习方法)也没有分析影响迁移性能的可能原因。并且，他们采用的目标数据集是较小的MRC数据集，尚不清楚对大规模数据集进行迁移学习的效果。</li>
 </ol>
 <h2 id="Contribution">Contribution</h2>
 <ol>
@@ -413,13 +413,13 @@ p^{g}=\text{max}(\text{softmax}(g_i^s,g_j^e)),(i,j)\in U<br>
 $$<br>
 从而将概率大于阈值$T_{prob}$的伪标注样本保留，实验分析阈值在0.3-0.4之间效果最好。</p>
 <p>其实一开始就能获得开始和结束所以概率和最大的对，之所以还要选择 $n_{best}-1$个，是为了用softmax求得  。文章将超参  $n_{best}$设为20，没有对应的实验分析。特别地，在每轮自训练中，只保留最后一个模型产生的伪标注样本。</p>
-<p>之后作者采用Long等人[^2]于2018 NeurIPS提出的条件对抗网络CDAN，其融合了之前所说的f和g。结构如下：</p>
+<p>之后作者采用Long等人[2]于2018 NeurIPS提出的条件对抗网络CDAN，其融合了之前所说的f和g。结构如下：</p>
 <p><img src="Fig2.png" alt="Fig2"><br>
-这里判别器$D$的条件为g，采用的方法为多线性映射，即两个向量的外积。但由于这里存在维度爆炸的情况，采用了一种随机方法来近似：<br>
+这里判别器$D$的条件为g，采用的方法为多重线性映射，即两个向量的外积。但由于这里存在维度爆炸的情况，采用了一种随机方法来近似：<br>
 $$<br>
 \langle\text{f}\otimes\text{g},\text{f}’\otimes\text{g}’\rangle\approx\langle Z_{R}(\text{f},\text{g}),Z_{R}(\text{f}’,\text{g}’)\rangle<br>
 $$<br>
-$Z_R$即随机采样多线性映射，由下式可得：<br>
+$Z_R$即随机采样多重线性映射，由下式可得：<br>
 $$<br>
 Z_{R}(\text{f,g})=\frac{1}{\sqrt{d_{R}}}(\text{R}<em>\text{f}avg</em>{col}(\text{f}))\circ(\text{R}<em>\text{g}\text{g})<br>
 $$<br>
@@ -437,10 +437,10 @@ $$<br>
 $$<br>
 使得具有较低熵的样本权重更大。</p>
 <p>此外，训练时最后一个epoch不进行对抗学习，目的是更好地拟合目标域。</p>
-<p><strong>文章：</strong> <em>Unsupervised Domain Adaptation on Reading Comprehension</em>[^3]（AAAI 2020）</p>
-<p>[^1]:Chung Y A, Lee H Y, Glass J. Supervised and unsupervised transfer learning for question answering[J]. arXiv preprint arXiv:1711.05345, 2017.<br>
-[^2]:Long M, Cao Z, Wang J, et al. Conditional adversarial domain adaptation[C]//Advances in Neural Information Processing Systems. 2018: 1640-1650.<br>
-[^3]:Cao Y, Fang M, Yu B, et al. Unsupervised Domain Adaptation on Reading Comprehension[C]//AAAI. 2020: 7480-7487.</p>
+<p><strong>文章：</strong> <em>Unsupervised Domain Adaptation on Reading Comprehension</em>[3]（AAAI 2020）</p>
+<p>[1]: Chung Y A, Lee H Y, Glass J. Supervised and unsupervised transfer learning for question answering[J]. arXiv preprint arXiv:1711.05345, 2017.</p>
+<p>[2]: Long M, Cao Z, Wang J, et al. Conditional adversarial domain adaptation[C]//Advances in Neural Information Processing Systems. 2018: 1640-1650.</p>
+<p>[3]: Cao Y, Fang M, Yu B, et al. Unsupervised Domain Adaptation on Reading Comprehension[C]//AAAI. 2020: 7480-7487.</p>
 
 
         <hr>
