@@ -375,6 +375,52 @@
   
 
 
+  <a href="/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
+    <h2 class="post-title">
+      Harvesting and Refining Question-Answer Pairs for Unsupervised QA
+    </h2>
+    <h3 class="post-subtitle">
+      reading note
+    </h3>
+    <div class="post-content-preview">
+      动机高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
+贡献
+提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。
+利用现有QA模型对REFQA......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by You Hao on
+    2020-09-24
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+    
+    <a href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+    
+    <a href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <div class="top">
+    <div class="iconfont icon-hot animated infinite tada"></div>
+  </div>
+  
+  <!-- top end -->
+  
+
+
   <a href="/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
     <h2 class="post-title">
       Unsupervised Question Answering by Cloze Translation
@@ -383,13 +429,11 @@
       reading note
     </h3>
     <div class="post-content-preview">
-      动机
-获取问答的训练数据费时费力，尤其是对于很多新领域或者语言，因此作者研究在完全没有训练数据（上下文-问题-答案）的情况下如何解决抽取式问答任务。
+      动机获取问答的训练数据费时费力，尤其是对于很多新领域或者语言，因此作者研究在完全没有训练数据（上下文-问题-答案）的情况下如何解决抽取式问答任务。
 贡献
-
 首次提出用于无监督问答的方法，即使用无监督机器翻译方法将生成的完形填空类型问题转化为自然问题。
 提出四种针对答案被隐藏的完形填空类型问题翻译成自然问题的方法，并且通过消融实验分析各种算法对性能的影响。
-该架构具有较强的灵活性和扩展性，可......
+该架构具有较强的灵活性和扩展性，可以直......
     </div>
   </a>
   
@@ -465,10 +509,6 @@
   
   <!-- top start (article top hot config) -->
   
-  <div class="top">
-    <div class="iconfont icon-hot animated infinite tada"></div>
-  </div>
-  
   <!-- top end -->
   
 
@@ -495,50 +535,6 @@
     <a href="/tags/#Travel" title="Travel">Travel</a>
     
     <a href="/tags/#Experience" title="Experience">Experience</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
-    <h2 class="post-title">
-      Harvesting and Refining Question-Answer Pairs for Unsupervised QA
-    </h2>
-    <h3 class="post-subtitle">
-      reading note
-    </h3>
-    <div class="post-content-preview">
-      动机
-高质量的训练数据收集费时费力，虽然Lewis等人使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
-贡献
-
-提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。
-利用现有QA模型对REFQA数......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by You Hao on
-    2020-09-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
-    
-    <a href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
-    
-    <a href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
     
   </div>
   
@@ -1298,21 +1294,6 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- <img src="http://WitheringMaple.github.io/img/icon_wechat.png" width="0" height="0" /> -->
 	<!-- Migrate from head to bottom, no longer block render and still work -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

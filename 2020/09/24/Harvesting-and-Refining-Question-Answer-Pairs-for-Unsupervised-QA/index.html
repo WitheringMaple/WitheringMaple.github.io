@@ -326,7 +326,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">909</span> In Total
+              Words <span class="post-count">908</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -386,29 +386,22 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>动机</h1>
-<p>高质量的训练数据收集费时费力，虽然Lewis等人使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的<strong>词汇重复</strong>；答案类型局限于<strong>命名实体或者名词短语</strong>，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。</p>
-<h1>贡献</h1>
-<ol>
+        <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的<strong>词汇重复</strong>；答案类型局限于<strong>命名实体或者名词短语</strong>，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。</p>
+<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><ol>
 <li>提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。</li>
 <li>利用现有QA模型对REFQA数据集先过滤，再改善，然后迭代执行，实验证明该方法能大幅度提升模型性能。</li>
 <li>实验证明该模型比其他无监督模型在SQuAD1.1和NewsQA上的性能都要好，并且能够用于问答的少样本学习。</li>
 </ol>
-<h1>模型</h1>
-<p>REFQA数据集的构建包括两步，即上下文和答案生成以及问题生成。其中，问题生成依然首先需要将陈述句变成完形填空类型句子Cloze Question，然后再将其转化为自然问题。</p>
-<h2 id="上下文和答案生成">上下文和答案生成</h2>
-<p><img src="Fig1.png" alt="Fig1"></p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>REFQA数据集的构建包括两步，即上下文和答案生成以及问题生成。其中，问题生成依然首先需要将陈述句变成完形填空类型句子Cloze Question，然后再将其转化为自然问题。</p>
+<h2 id="上下文和答案生成"><a href="#上下文和答案生成" class="headerlink" title="上下文和答案生成"></a>上下文和答案生成</h2><p><img src="Fig1.png" alt="Fig1"></p>
 <p>上下文和答案生成使用维基百科中的陈述句及其相应引用的文档。将引用的文档作为上下文，然后从对陈述句抽取子句，再从陈述句中抽取命名实体作为候选答案。特别地，成为候选答案的条件是陈述句中的必须和上下文中的相同，然后记录其在上下文中的位置。如果候选答案出现在上下文中多次，则选择上下文周围与陈述句重叠最大的位置，详见图1。</p>
-<h2 id="问题生成">问题生成</h2>
-<p><img src="Fig2.png" alt="Fig1"></p>
-<p>之后采用类似Lewis等人[1]提出的cloze问题生成方法，再利用依存重构的方法来生成自然问题，如上图所示。即先得到cloze问题的依存树，先将包含答案的右结点保留，然后将解析树的结点进行移动，即如果孩子节点的子树包含答案结点，则将孩子结点移动到第一个孩子结点。之后再对重构的树进行“中序”遍历，利用Lewis等人提出的规则方法用wh*替代答案。</p>
+<h2 id="问题生成"><a href="#问题生成" class="headerlink" title="问题生成"></a>问题生成</h2><p><img src="Fig2.png" alt="Fig1"></p>
+<p>之后采用类似Lewis等人提出的cloze问题生成方法，再利用依存重构的方法来生成自然问题，如上图所示。即先得到cloze问题的依存树，先将包含答案的右结点保留，然后将解析树的结点进行移动，即如果孩子节点的子树包含答案结点，则将孩子结点移动到第一个孩子结点。之后再对重构的树进行“中序”遍历，利用Lewis等人提出的规则方法用wh*替代答案。</p>
 <p>之后则是迭代改善数据模型：</p>
 <p><img src="Fig3.png" alt="Fig1"></p>
 <p>即先从获得的REFQA数据集中采样一部分数据初始化QA模型，在实验中采用的则是BERT-large(whole word mask)。再使用训练的QA模型对剩下分成多个集合的数据分别进行推理，得到概率必须满足置信度阈值的条件的预测答案。如果预测答案与原始答案相同，或者是原始答案的一部分，则保留原始答案，生成过滤后的三元组；若不同，则使用预测答案作为新的答案候选，然后根据上下文再找包含其的陈述句，根据该陈述句用之前的方法生成自然问题，之后将新的候选答案，新的问题以及上下文三元组作为改善的数据，和过滤的三元组数据集一起组成新的训练数据来继续训练QA模型。</p>
-<h1><strong>文章</strong>标题</h1>
-<p>Harvesting and Refining Question-Answer Pairs for Unsupervised QA[2]（ACL 2020）</p>
-<h1><strong>参考文献</strong></h1>
-<p>[1] Lewis P, Denoyer L, Riedel S. Unsupervised question answering by cloze translation[J]. arXiv preprint arXiv:1906.04980, 2019.</p>
+<h1 id="文章标题"><a href="#文章标题" class="headerlink" title="文章标题"></a><strong>文章</strong>标题</h1><p>Harvesting and Refining Question-Answer Pairs for Unsupervised QA[2]（ACL 2020）</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a><strong>参考文献</strong></h1><p>[1] Lewis P, Denoyer L, Riedel S. Unsupervised question answering by cloze translation[J]. arXiv preprint arXiv:1906.04980, 2019.</p>
 <p>[2] Li Z, Wang W, Dong L, et al. Harvesting and Refining Question-Answer Pairs for Unsupervised QA[J]. arXiv preprint arXiv:2005.02925, 2020.</p>
 
 
@@ -548,7 +541,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">贡献</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#上下文和答案生成"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">上下文和答案生成</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题生成"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">问题生成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">文章标题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动机"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#贡献"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">贡献</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#模型"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#上下文和答案生成"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">上下文和答案生成</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题生成"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">问题生成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#文章标题"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">文章标题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#参考文献"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
         
         </div>
       </aside>
@@ -1159,21 +1152,6 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- <img src="http://WitheringMaple.github.io/img/icon_wechat.png" width="0" height="0" /> -->
 	<!-- Migrate from head to bottom, no longer block render and still work -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
