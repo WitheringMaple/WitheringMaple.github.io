@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://witheringmaple.github.io/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/</loc>
+    
+    <lastmod>2020-09-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://witheringmaple.github.io/about/index.html</loc>
     
     <lastmod>2020-09-23</lastmod>
@@ -60,7 +67,7 @@
 
   <url>
     <loc>http://witheringmaple.github.io/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,49 +75,49 @@
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Travel/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Experience/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Deep-Learning/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Transfer-Learning/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Natural-Language-Processing/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Question-Answering/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Machine-Translation/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -119,21 +126,21 @@
   
   <url>
     <loc>http://witheringmaple.github.io/categories/Travel/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/categories/Transfer-Learning-for-QA/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://witheringmaple.github.io/categories/Unsupervised-Question-Answering/</loc>
-    <lastmod>2020-09-23</lastmod>
+    <lastmod>2020-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

@@ -71,12 +71,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../css/highlight.css">
-<link rel="stylesheet" href="../../css/widget.css">
-<link rel="stylesheet" href="../../css/rocket.css">
-<link rel="stylesheet" href="../../css/signature.css">
-<link rel="stylesheet" href="../../css/catalog.css">
-<link rel="stylesheet" href="../../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -138,10 +138,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://WitheringMaple.github.io/tags/Travel/">
+  <link rel="canonical" href="http://WitheringMaple.github.io/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
   <title>
     
-    freedom
+    Harvesting and Refining Question-Answer Pairs for Unsupervised QA - freedom
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -280,8 +280,8 @@
   <!-- CDN: jsdelivr start -->
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/archive_bg2.jpg');
+       /*post*/
+        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/post3.jpg');
       
     }
 
@@ -300,10 +300,44 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Freedom</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">Good luck is another name for tenacity of purpose</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+              
+              <a class="tag" href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+              
+              <a class="tag" href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+              
+            </div>
+            <h1>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</h1>
+            <h2 class="subheading">reading note</h2>
+            <span class="meta">
+              Posted by You Hao on
+              2020-09-24
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">3</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">909</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -344,327 +378,262 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h1>动机</h1>
+<p>高质量的训练数据收集费时费力，虽然Lewis等人使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的<strong>词汇重复</strong>；答案类型局限于<strong>命名实体或者名词短语</strong>，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。</p>
+<h1>贡献</h1>
+<ol>
+<li>提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。</li>
+<li>利用现有QA模型对REFQA数据集先过滤，再改善，然后迭代执行，实验证明该方法能大幅度提升模型性能。</li>
+<li>实验证明该模型比其他无监督模型在SQuAD1.1和NewsQA上的性能都要好，并且能够用于问答的少样本学习。</li>
+</ol>
+<h1>模型</h1>
+<p>REFQA数据集的构建包括两步，即上下文和答案生成以及问题生成。其中，问题生成依然首先需要将陈述句变成完形填空类型句子Cloze Question，然后再将其转化为自然问题。</p>
+<h2 id="上下文和答案生成">上下文和答案生成</h2>
+<p><img src="Fig1.png" alt="Fig1"></p>
+<p>上下文和答案生成使用维基百科中的陈述句及其相应引用的文档。将引用的文档作为上下文，然后从对陈述句抽取子句，再从陈述句中抽取命名实体作为候选答案。特别地，成为候选答案的条件是陈述句中的必须和上下文中的相同，然后记录其在上下文中的位置。如果候选答案出现在上下文中多次，则选择上下文周围与陈述句重叠最大的位置，详见图1。</p>
+<h2 id="问题生成">问题生成</h2>
+<p><img src="Fig2.png" alt="Fig1"></p>
+<p>之后采用类似Lewis等人[1]提出的cloze问题生成方法，再利用依存重构的方法来生成自然问题，如上图所示。即先得到cloze问题的依存树，先将包含答案的右结点保留，然后将解析树的结点进行移动，即如果孩子节点的子树包含答案结点，则将孩子结点移动到第一个孩子结点。之后再对重构的树进行“中序”遍历，利用Lewis等人提出的规则方法用wh*替代答案。</p>
+<p>之后则是迭代改善数据模型：</p>
+<p><img src="Fig3.png" alt="Fig1"></p>
+<p>即先从获得的REFQA数据集中采样一部分数据初始化QA模型，在实验中采用的则是BERT-large(whole word mask)。再使用训练的QA模型对剩下分成多个集合的数据分别进行推理，得到概率必须满足置信度阈值的条件的预测答案。如果预测答案与原始答案相同，或者是原始答案的一部分，则保留原始答案，生成过滤后的三元组；若不同，则使用预测答案作为新的答案候选，然后根据上下文再找包含其的陈述句，根据该陈述句用之前的方法生成自然问题，之后将新的候选答案，新的问题以及上下文三元组作为改善的数据，和过滤的三元组数据集一起组成新的训练数据来继续训练QA模型。</p>
+<h1><strong>文章</strong>标题</h1>
+<p>Harvesting and Refining Question-Answer Pairs for Unsupervised QA[2]（ACL 2020）</p>
+<h1><strong>参考文献</strong></h1>
+<p>[1] Lewis P, Denoyer L, Riedel S. Unsupervised question answering by cloze translation[J]. arXiv preprint arXiv:1906.04980, 2019.</p>
+<p>[2] Li Z, Wang W, Dong L, et al. Harvesting and Refining Question-Answer Pairs for Unsupervised QA[J]. arXiv preprint arXiv:2005.02925, 2020.</p>
 
-      
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/" style="color: #0085a1">
-              <span>
-                Harvesting and Refining Question-Answer Pairs for Unsupervised QA
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/" style="color: #0085a1">
-              <span>
-                Unsupervised Question Answering by Cloze Translation
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/" style="color: #0085a1">
-              <span>
-                Unsupervised Domain Adaptation on Reading Comprehension
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-20
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/20/Experience/" style="color: #0085a1">
-              <span>
-                Experience
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="next">
+            <a href="/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/" data-toggle="tooltip" data-placement="top" title="Unsupervised Question Answering by Cloze Translation">Next Post &rarr;</a>
           </li>
           
         </ul>
+
+        
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Harvesting and Refining Question-Answer Pairs for Unsupervised QA&body=Hi,I found this website and thought you might like it http://WitheringMaple.github.io/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+<!-- gitalk start -->
+<!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+<div id="gitalk-container"></div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+<script src="/js/comment/gitalk.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'c8a7e6298a03d819661c',
+    clientSecret: '53619776d8b5094ecf23a7cc59568cfcaebb1cf0',
+    repo: 'comment',
+    owner: 'WitheringMaple',
+    admin: 'WitheringMaple',
+    id: 'Thu Sep 24 2020 08:34:54 GMT+0800', // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    perPage: 10 ,
+    pagerDirection: 'last',
+    createIssueManually: false ,
+    language: 'en'
+  });
+  gitalk.render('gitalk-container');
+
+  var gtFolded = () => {
+    setTimeout(function() {
+      let markdownBody = document.getElementsByClassName("markdown-body");
+      let list = Array.from(markdownBody);
+      list.forEach(item => {
+        if (item.clientHeight > 250) {
+          item.classList.add('gt-comment-body-folded');
+          item.style.maxHeight = '250px';
+          item.title = 'Click to Expand';
+          item.onclick = function() {
+            item.classList.remove('gt-comment-body-folded');
+            item.style.maxHeight = '';
+            item.title = '';
+            item.onclick = null;
+          };
+        }
+      })
+    }, 800);
+  }
+</script>
+
+<!-- gitalk end -->
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
       </div>
-      
 
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
 
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
         
-<!-- <h5>VISITORS</h5> -->
-<h5><a href="/">VISITORS</a></h5>
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">贡献</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#上下文和答案生成"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">上下文和答案生成</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题生成"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">问题生成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">文章标题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
+        
+        </div>
+      </aside>
     
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Travel" title="Travel" rel="1">Travel</a>
-    
-    
-    
-    <a href="/tags/#Experience" title="Experience" rel="1">Experience</a>
-    
-    
-    
-    <a href="/tags/#Deep Learning" title="Deep Learning" rel="3">Deep Learning</a>
-    
-    
-    
-    <a href="/tags/#Transfer Learning" title="Transfer Learning" rel="1">Transfer Learning</a>
-    
-    
-    
-    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="3">Natural Language Processing</a>
-    
-    
-    
-    <a href="/tags/#Question Answering" title="Question Answering" rel="3">Question Answering</a>
-    
-    
-    
-    <a href="/tags/#Machine Translation" title="Machine Translation" rel="1">Machine Translation</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-
-    
-    <p>Contact me: yh2934@126.com</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/WitheringMaple">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.instagram.com/yh293410">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.facebook.com/You Hao">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.zhihu.com/people/明若泛白">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa  fa-stack-1x fa-inverse">知</i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-      <li>
-        <a target="_blank" href="http://weibo.com/尤浩hz">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
         
-<!-- <h5>RECENT POSTS</h5> -->
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
-      <li>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</li>
-    </a>
-    
-    <a href="../../2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
-      <li>Unsupervised Question Answering by Cloze Translation</li>
-    </a>
-    
-    <a href="../../2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/">
-      <li>Unsupervised Domain Adaptation on Reading Comprehension</li>
-    </a>
-    
-    <a href="../../2020/09/20/Experience/">
-      <li>Experience</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+            
+            <a class="tag" href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+            
+            <a class="tag" href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+            
+          </div>
+        </section>
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archives/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li></ul>
+
+        <!-- Friends Blog -->
+        
+      </div>
     </div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Travel">
-      <li>Travel</li>
-    </a>
-    
-    <a href="/categories/#Transfer Learning for QA">
-      <li>Transfer Learning for QA</li>
-    </a>
-    
-    <a href="/categories/#Unsupervised Question Answering">
-      <li>Unsupervised Question Answering</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-    
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
@@ -801,7 +770,7 @@
     let jsdelivr = "https://cdn.jsdelivr.net/gh/";
     let gh = "WitheringMaple";
     let ghPages = gh + ".github.io";
-    let pagePath = "tags/Travel/index.html";
+    let pagePath = "2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/";
     let jsdelivrurl;
     if (pagePath.indexOf("index.html") != -1) {
       jsdelivrurl = jsdelivr + gh + "/" + ghPages;
