@@ -375,6 +375,58 @@
   
 
 
+  <a href="/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/">
+    <h2 class="post-title">
+      Cross-Lingual Transfer Learning for Question Answering
+    </h2>
+    <h3 class="post-subtitle">
+      reading note
+    </h3>
+    <div class="post-content-preview">
+      动机
+大多数语言缺乏高质量的训练样本来训练QA模型，并且为QA注释大规模的数据代价很大，因此可以考虑用训练样本丰富的语言如英语，利用其训练数据训练的QA模型将知识迁移到具有较少训练样本的目标语言。注意，本文解决的不是zero-shot目标语言问答，即目标语言依然具有少量训练数据。
+贡献
+
+证明句子级的机器翻译模型对解决针对问答的跨语言迁移学习非常有效。
+提出使用域对抗训练方法，即基于GAN的......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by You Hao on
+    2020-09-25
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+    
+    <a href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+    
+    <a href="/tags/#Machine Translation" title="Machine Translation">Machine Translation</a>
+    
+    <a href="/tags/#Cross-Lingual Transfer Learning" title="Cross-Lingual Transfer Learning">Cross-Lingual Transfer Learning</a>
+    
+    <a href="/tags/#Generative Adversarial Network" title="Generative Adversarial Network">Generative Adversarial Network</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <div class="top">
+    <div class="iconfont icon-hot animated infinite tada"></div>
+  </div>
+  
+  <!-- top end -->
+  
+
+
   <a href="/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
     <h2 class="post-title">
       Harvesting and Refining Question-Answer Pairs for Unsupervised QA
@@ -383,10 +435,12 @@
       reading note
     </h3>
     <div class="post-content-preview">
-      动机高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
+      动机
+高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
 贡献
+
 提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。
-利用现有QA模型对REFQA......
+利用现有QA模型对REF......
     </div>
   </a>
   
@@ -395,8 +449,6 @@
     2020-09-24
   </p>
   <div class="tags">
-    
-    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
     
     <a href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
     
@@ -479,8 +531,9 @@
     </h3>
     <div class="post-content-preview">
       Motivation
+
 现实世界中存在很多无标签的数据，而现有的机器阅读理解模型的泛化能力差，即从一个领域学到的知识很难用于其他无标签的数据集的答案预测。甚至即便是BERT这种在巨型无监督数据集上预训练的模型，在某个数据集上微调后用于其他数据集时，性能会急剧降低。
-对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Ch......
+对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如C......
     </div>
   </a>
   
@@ -489,8 +542,6 @@
     2020-09-21
   </p>
   <div class="tags">
-    
-    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
     
     <a href="/tags/#Transfer Learning" title="Transfer Learning">Transfer Learning</a>
     
@@ -596,7 +647,7 @@
     
     
     
-    <a href="/tags/#Deep Learning" title="Deep Learning" rel="3">Deep Learning</a>
+    <a href="/tags/#Deep Learning" title="Deep Learning" rel="1">Deep Learning</a>
     
     
     
@@ -604,15 +655,23 @@
     
     
     
-    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="3">Natural Language Processing</a>
+    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="4">Natural Language Processing</a>
     
     
     
-    <a href="/tags/#Question Answering" title="Question Answering" rel="3">Question Answering</a>
+    <a href="/tags/#Question Answering" title="Question Answering" rel="4">Question Answering</a>
     
     
     
-    <a href="/tags/#Machine Translation" title="Machine Translation" rel="1">Machine Translation</a>
+    <a href="/tags/#Machine Translation" title="Machine Translation" rel="2">Machine Translation</a>
+    
+    
+    
+    <a href="/tags/#Cross-Lingual Transfer Learning" title="Cross-Lingual Transfer Learning" rel="1">Cross-Lingual Transfer Learning</a>
+    
+    
+    
+    <a href="/tags/#Generative Adversarial Network" title="Generative Adversarial Network" rel="1">Generative Adversarial Network</a>
     
     
   </div>
@@ -707,6 +766,10 @@
 <div class="widget">
   <ul>
     
+    <a href="2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/">
+      <li>Cross-Lingual Transfer Learning for Question Answering</li>
+    </a>
+    
     <a href="2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
       <li>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</li>
     </a>
@@ -733,7 +796,7 @@
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archives/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">5</span></li></ul>
     </div>
 
 
@@ -1294,6 +1357,21 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- <img src="http://WitheringMaple.github.io/img/icon_wechat.png" width="0" height="0" /> -->
 	<!-- Migrate from head to bottom, no longer block render and still work -->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
