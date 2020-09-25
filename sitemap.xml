@@ -9,7 +9,7 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
     
     <lastmod>2020-09-25</lastmod>
     
@@ -23,7 +23,7 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
+    <loc>http://witheringmaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
     
     <lastmod>2020-09-25</lastmod>
     
@@ -131,6 +131,20 @@
   
   <url>
     <loc>http://witheringmaple.github.io/tags/Generative-Adversarial-Network/</loc>
+    <lastmod>2020-09-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://witheringmaple.github.io/tags/Unsupervised-Question-Answering/</loc>
+    <lastmod>2020-09-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://witheringmaple.github.io/tags/Domain-Adaptation/</loc>
     <lastmod>2020-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
