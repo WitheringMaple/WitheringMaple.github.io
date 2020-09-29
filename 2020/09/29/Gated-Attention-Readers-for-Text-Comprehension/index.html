@@ -71,12 +71,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../css/highlight.css">
-<link rel="stylesheet" href="../css/widget.css">
-<link rel="stylesheet" href="../css/rocket.css">
-<link rel="stylesheet" href="../css/signature.css">
-<link rel="stylesheet" href="../css/catalog.css">
-<link rel="stylesheet" href="../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -138,10 +138,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://WitheringMaple.github.io/archive/">
+  <link rel="canonical" href="http://WitheringMaple.github.io/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/">
   <title>
     
-    Archives - freedom
+    Gated-Attention Readers for Text Comprehension - freedom
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -280,8 +280,8 @@
   <!-- CDN: jsdelivr start -->
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/archive.jpg');
+       /*post*/
+        background-image: url('https://cdn.jsdelivr.net/gh/WitheringMaple/WitheringMaple.github.io/img/header_img/post1.jpg');
       
     }
 
@@ -300,10 +300,44 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Archives</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">Never look back...</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+              
+              <a class="tag" href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+              
+              <a class="tag" href="/tags/#Cloze-style Machine Reading Comprehension" title="Cloze-style Machine Reading Comprehension">Cloze-style Machine Reading Comprehension</a>
+              
+            </div>
+            <h1>Gated-Attention Readers for Text Comprehension</h1>
+            <h2 class="subheading">reading note</h2>
+            <span class="meta">
+              Posted by You Hao on
+              2020-09-29
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">4</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.2k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -344,403 +378,271 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h1>Motivation</h1>
+<p>本文的研究领域为完形填空类型阅读理解，但当时（2016年）关于该方向的工作独立应用多跳推理和注意力，没有以互补的方式将二者结合；此外，它们应用的查询注意力要么是逐token，要么逐句，非细粒度注意力交互，从而使得当时的模型性能不够强。</p>
+<h1>Contribution</h1>
+<ol>
+<li>提出一种新的门控注意力机制，以互补的方式将多跳推理以及注意力相结合，使得在每一跳都更新token表示。</li>
+<li>本文使用的注意力机制为语义级，即允许token表示的每个维度都直接交互，并且应用逐层过滤的方法。</li>
+<li>在5种大规模实验数据集上的定量和定性分析都表明GA reader能够取得非常好的效果。</li>
+</ol>
+<h1>Model</h1>
+<p>模型的主要架构如下图所示：</p>
+<p><img src="Fig1.png" alt="Fig1"></p>
+<p>该模型主要由输入嵌入层，多跳推理层以及答案预测层组成，其中多跳推理层的每一跳都包含Gated-Attention机制。</p>
+<p>本文使用GRU分别对输入的文档和对应的查询进行编码，在每跳种，将之前文档的更新输入以及原始的查询输入作为新的输入，两者都需要过一个不同的Bi-GRU。在下一跳之前，还需要将两者过一个门控注意力组件，即先求得文档感知的查询，然后将文档中的token与每一个新的查询token表示相乘，得到新的文档token表示。</p>
+<p>当预测答案时，先找出查询中被mask的位置，得到在该位置的查询Bi-GRU的最后一层的中间输出，然后再将其与文档GRU的最后完整输出做点积，过一个softmax，得到文档中每个token的概率分布。然后采用AS Reader[1]中的pointer sum attention，对于候选答案集中的每个候选答案，如果候选答案中的token出现在文档中，则将该token的概率累加作为该候选答案的概率，然后再对所有候选对象进行归一化。</p>
+<p>此外，作者还采用一些tricks来增强模型，即字符级嵌入(Character-level Embeddings)以及问题证据共同单词特征(Question Evidence Common Word Feature, qe-comm)。前者由look-up表中的token嵌入以及字符组合模型连接构成，后者则采用Li等人[3]在2016年提出的token级指示器特征，即为文档中的每个token构造一个二维one-hot向量，两个值分别表明该token是否在文档以及其相应的查询中。</p>
+<h1>实验</h1>
+<p><img src="Tag1.png" alt="Tag1"></p>
+<p>表1为在WDW(Who Did What)验证集和测试集上的准确率，从表中可知当GA添加tricks中的特征以及将look-up表中的token表示在训练时固定，能取得最佳效果。</p>
+<p><img src="Tag3.png" alt="Tag3"></p>
+<p>表2为在CNN, Daily Mail以及CBT(Children’s Book Text)上的验证集和测试集上的准确率，在不同的数据集上，使用不同的设置取得不同的效果。</p>
+<p><img src="Fig2.png" alt="Fig2"></p>
+<p>图2为在不同大小训练集上有和无GA 组件的性能影响，改图说明GA大多数情况下始终比没有情况下性能好。</p>
+<p><img src="Tag2.png" alt="Tag2"></p>
+<p><img src="Tag4.png" alt="Tag4"></p>
+<p>表2为不同门控函数以及不同跳数对模型性能的影响，表4为没有qe-comm并且固定look-up token表示的情况下的消融分析，前者表明使用乘法比求和以及连接效果好，并且跳数为4时效果最好。后者的消融研究则体现了文中提出多种组件的效果，其中-glove表示不使用现有golve而是使用在语料本身上进行训练的词嵌入，-char表示不使用字符嵌入，-token-attentions指在GA中不使用token之间各维的注意力，该注意力能使得文档关注查询中的特定token而不是真个查询。</p>
+<p><img src="Fig3.png" alt="Fig3"></p>
+<p>上图为逐层即不同跳之前的注意力变化，表明多跳GA能够使文档中的正确答案在每一条都关注查询中不同的token，并且最终关注查询中的mask，而非正确答案则只关注查询中的某一部分并且在最后一跳也无法得到很高的分数。因此，该模型能够取得非常好的效果。</p>
+<h1>文章</h1>
+<p>Unsupervised Domain Adaptation on Reading Comprehension[3]（ACL 2017）</p>
+<h1>参考文献</h1>
+<p>[1] Kadlec R, Schmid M, Bajgar O, et al. Text understanding with the attention sum reader network[J]. arXiv preprint arXiv:1603.01547, 2016.</p>
+<p>[2] Li P, Li W, He Z, et al. Dataset and neural recurrent sequence labeling model for open-domain factoid question answering[J]. arXiv preprint arXiv:1607.06275, 2016.</p>
+<p>[3] Cao Y, Fang M, Yu B, et al. Unsupervised Domain Adaptation on Reading Comprehension[C]//AAAI. 2020: 7480-7487.</p>
 
-      
-<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/" style="color: #0085a1">
-              <span>
-                Gated-Attention Readers for Text Comprehension
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
           
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/" style="color: #0085a1">
-              <span>
-                Cross-Lingual Transfer Learning for Question Answering
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/" style="color: #0085a1">
-              <span>
-                Harvesting and Refining Question-Answer Pairs for Unsupervised QA
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/" style="color: #0085a1">
-              <span>
-                Unsupervised Question Answering by Cloze Translation
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/" style="color: #0085a1">
-              <span>
-                Unsupervised Domain Adaptation on Reading Comprehension
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-          </li>
-          
-          <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-          <li>
-            09-20
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/09/20/Experience/" style="color: #0085a1">
-              <span>
-                Experience
-              </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+          <li class="next">
+            <a href="/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/" data-toggle="tooltip" data-placement="top" title="Cross-Lingual Transfer Learning for Question Answering">Next Post &rarr;</a>
           </li>
           
         </ul>
+
+        
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Gated-Attention Readers for Text Comprehension&body=Hi,I found this website and thought you might like it http://WitheringMaple.github.io/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+<!-- gitalk start -->
+<!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+<div id="gitalk-container"></div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+<script src="/js/comment/gitalk.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'c8a7e6298a03d819661c',
+    clientSecret: '53619776d8b5094ecf23a7cc59568cfcaebb1cf0',
+    repo: 'comment',
+    owner: 'WitheringMaple',
+    admin: 'WitheringMaple',
+    id: 'Tue Sep 29 2020 20:48:59 GMT+0800', // Ensure uniqueness and length less than 50
+    distractionFreeMode: false, // Facebook-like distraction free mode
+    perPage: 10 ,
+    pagerDirection: 'last',
+    createIssueManually: false ,
+    language: 'en'
+  });
+  gitalk.render('gitalk-container');
+
+  var gtFolded = () => {
+    setTimeout(function() {
+      let markdownBody = document.getElementsByClassName("markdown-body");
+      let list = Array.from(markdownBody);
+      list.forEach(item => {
+        if (item.clientHeight > 250) {
+          item.classList.add('gt-comment-body-folded');
+          item.style.maxHeight = '250px';
+          item.title = 'Click to Expand';
+          item.onclick = function() {
+            item.classList.remove('gt-comment-body-folded');
+            item.style.maxHeight = '';
+            item.title = '';
+            item.onclick = null;
+          };
+        }
+      })
+    }, 800);
+  }
+</script>
+
+<!-- gitalk end -->
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
       </div>
-      
 
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
 
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-      <hr>
-
-      
-
-      
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
         
-<!-- <h5>VISITORS</h5> -->
-<h5><a href="/">VISITORS</a></h5>
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Motivation</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Contribution</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Model</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">实验</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">文章</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
+        
+        </div>
+      </aside>
     
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Travel" title="Travel" rel="1">Travel</a>
-    
-    
-    
-    <a href="/tags/#Experience" title="Experience" rel="1">Experience</a>
-    
-    
-    
-    <a href="/tags/#Transfer Learning" title="Transfer Learning" rel="1">Transfer Learning</a>
-    
-    
-    
-    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="5">Natural Language Processing</a>
-    
-    
-    
-    <a href="/tags/#Question Answering" title="Question Answering" rel="5">Question Answering</a>
-    
-    
-    
-    <a href="/tags/#Machine Translation" title="Machine Translation" rel="2">Machine Translation</a>
-    
-    
-    
-    <a href="/tags/#Cross-Lingual Transfer Learning" title="Cross-Lingual Transfer Learning" rel="1">Cross-Lingual Transfer Learning</a>
-    
-    
-    
-    <a href="/tags/#Generative Adversarial Network" title="Generative Adversarial Network" rel="1">Generative Adversarial Network</a>
-    
-    
-    
-    <a href="/tags/#Unsupervised Question Answering" title="Unsupervised Question Answering" rel="3">Unsupervised Question Answering</a>
-    
-    
-    
-    <a href="/tags/#Domain Adaptation" title="Domain Adaptation" rel="1">Domain Adaptation</a>
-    
-    
-    
-    <a href="/tags/#Cloze-style Machine Reading Comprehension" title="Cloze-style Machine Reading Comprehension" rel="1">Cloze-style Machine Reading Comprehension</a>
-    
-    
-    
-    <a href="/tags/#Machine Reading Comprehension" title="Machine Reading Comprehension" rel="1">Machine Reading Comprehension</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-
-    
-    <p>Contact me: yh2934@126.com</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/WitheringMaple">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.instagram.com/yh293410">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.facebook.com/You Hao">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-      <li>
-        <a target="_blank" href="https://www.zhihu.com/people/明若泛白">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa  fa-stack-1x fa-inverse">知</i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-      <li>
-        <a target="_blank" href="http://weibo.com/尤浩hz">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
         
-<!-- <h5>RECENT POSTS</h5> -->
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/">
-      <li>Gated-Attention Readers for Text Comprehension</li>
-    </a>
-    
-    <a href="../2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/">
-      <li>Cross-Lingual Transfer Learning for Question Answering</li>
-    </a>
-    
-    <a href="../2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/">
-      <li>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</li>
-    </a>
-    
-    <a href="../2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/">
-      <li>Unsupervised Question Answering by Cloze Translation</li>
-    </a>
-    
-    <a href="../2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/">
-      <li>Unsupervised Domain Adaptation on Reading Comprehension</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+            
+            <a class="tag" href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+            
+            <a class="tag" href="/tags/#Cloze-style Machine Reading Comprehension" title="Cloze-style Machine Reading Comprehension">Cloze-style Machine Reading Comprehension</a>
+            
+          </div>
+        </section>
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archives/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/09/">September 2020</a><span class="archive-list-count">6</span></li></ul>
+
+        <!-- Friends Blog -->
+        
+      </div>
     </div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Travel">
-      <li>Travel</li>
-    </a>
-    
-    <a href="/categories/#Machine Reading Comprehension">
-      <li>Machine Reading Comprehension</li>
-    </a>
-    
-    <a href="/categories/#Question Answering">
-      <li>Question Answering</li>
-    </a>
-    
-    <a href="/categories/#Question Answering">
-      <li>Question Answering</li>
-    </a>
-    
-    <a href="/categories/#Transfer Learning">
-      <li>Transfer Learning</li>
-    </a>
-    
-    <a href="/categories/#Question Answering">
-      <li>Question Answering</li>
-    </a>
-    
-    <a href="/categories/#Machine Reading Comprehension">
-      <li>Machine Reading Comprehension</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-    
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
@@ -877,7 +779,7 @@
     let jsdelivr = "https://cdn.jsdelivr.net/gh/";
     let gh = "WitheringMaple";
     let ghPages = gh + ".github.io";
-    let pagePath = "archive/index.html";
+    let pagePath = "2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/";
     let jsdelivrurl;
     if (pagePath.indexOf("index.html") != -1) {
       jsdelivrurl = jsdelivr + gh + "/" + ghPages;

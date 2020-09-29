@@ -390,19 +390,28 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>大多数语言缺乏高质量的训练样本来训练QA模型，并且为QA注释大规模的数据代价很大，因此可以考虑用训练样本丰富的语言如英语，利用其训练数据训练的QA模型将知识迁移到具有较少训练样本的目标语言（甚至无训练样本）。</p>
-<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><ol>
+        <h1>动机</h1>
+<p>大多数语言缺乏高质量的训练样本来训练QA模型，并且为QA注释大规模的数据代价很大，因此可以考虑用训练样本丰富的语言如英语，利用其训练数据训练的QA模型将知识迁移到具有较少训练样本的目标语言（甚至无训练样本）。</p>
+<h1>贡献</h1>
+<ol>
 <li>证明句子级的机器翻译模型对解决针对问答的跨语言迁移学习非常有效。</li>
 <li>提出使用域对抗训练方法，即<strong>基于GAN</strong>的方法，仅使用<strong>逐词双语词典</strong>来学习QA模型的不变隐式表示，并且其性能匹敌句子级机器翻译的方法。</li>
 <li>通过在SQuAD以及NewsQA上的实验发现，结合机器翻译以及GAN方法能够产生最好的效果，在DRCD数据集上得到87.26的F1值。</li>
 </ol>
-<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><h2 id="基于机器翻译的方法"><a href="#基于机器翻译的方法" class="headerlink" title="基于机器翻译的方法"></a>基于机器翻译的方法</h2><p>使用机器翻译解决跨语言的迁移有Train-on-Target以及Test-on-Source两种，前者将源语言数据集翻译成目标语言数据集，然后在新数据集上像传统QA训练方法一样进行训练；后者则是将目前语言数据翻译成源领域数据，从而将在源语言上训练好的模型应用到翻译的目标数据集上进行测试（测试时答案为源语言，可以将其再翻译为目标语言）。</p>
-<h2 id="基于GAN的方法"><a href="#基于GAN的方法" class="headerlink" title="基于GAN的方法"></a>基于GAN的方法</h2><h3 id="双语嵌入"><a href="#双语嵌入" class="headerlink" title="双语嵌入"></a>双语嵌入</h3><p>由于将不同语言领域数据映射到同一空间使得模型能够受益于两种语言数据，作者提出使用逐词双语词典方法，即对源语言中的每个单词，根据词典找到目标语言中对应的单词，然后将目标语言单词的嵌入作为对应的源语言单词的嵌入表示。</p>
-<h3 id="具体架构"><a href="#具体架构" class="headerlink" title="具体架构"></a>具体架构</h3><p>由于该方法不足以实现联合训练，作者提出一种新的模型。该基于GAN的模型以QANet模型[1]为主体，整体结构如下图所示：</p>
+<h1>模型</h1>
+<h2 id="基于机器翻译的方法">基于机器翻译的方法</h2>
+<p>使用机器翻译解决跨语言的迁移有Train-on-Target以及Test-on-Source两种，前者将源语言数据集翻译成目标语言数据集，然后在新数据集上像传统QA训练方法一样进行训练；后者则是将目前语言数据翻译成源领域数据，从而将在源语言上训练好的模型应用到翻译的目标数据集上进行测试（测试时答案为源语言，可以将其再翻译为目标语言）。</p>
+<h2 id="基于GAN的方法">基于GAN的方法</h2>
+<h3 id="双语嵌入">双语嵌入</h3>
+<p>由于将不同语言领域数据映射到同一空间使得模型能够受益于两种语言数据，作者提出使用逐词双语词典方法，即对源语言中的每个单词，根据词典找到目标语言中对应的单词，然后将目标语言单词的嵌入作为对应的源语言单词的嵌入表示。</p>
+<h3 id="具体架构">具体架构</h3>
+<p>由于该方法不足以实现联合训练，作者提出一种新的模型。该基于GAN的模型以QANet模型[1]为主体，整体结构如下图所示：</p>
 <p><img src="Fig1.png" alt="Fig1"></p>
 <p>即包括语言依赖层以及语言独立层。语言依赖层独立编码源语言以及目标语言的句子，然后将两者输出送入语言独立层，即QANet得另一部分。注意，语言独立层的参数在不同语言中是共享的。之后，作者融入语言判别器[2]根据语言依赖层的输出来判断输入向量序列的语言，即识别来自源语言还是目标语言。当判别器无法识别时，抽取的表示则就是不变的，从而使得模型利用来自两种语言的知识。</p>
-<h1 id="文章标题"><a href="#文章标题" class="headerlink" title="文章标题"></a><strong>文章</strong>标题</h1><p>Cross-Lingual Transfer Learning for Question Answering[3]（EMNLP 2019）</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a><strong>参考文献</strong></h1><p>[1] Yu A W, Dohan D, Luong M T, et al. Qanet: Combining local convolution with global self-attention for reading comprehension[J]. arXiv preprint arXiv:1804.09541, 2018.</p>
+<h1><strong>文章</strong>标题</h1>
+<p>Cross-Lingual Transfer Learning for Question Answering[3]（EMNLP 2019）</p>
+<h1><strong>参考文献</strong></h1>
+<p>[1] Yu A W, Dohan D, Luong M T, et al. Qanet: Combining local convolution with global self-attention for reading comprehension[J]. arXiv preprint arXiv:1804.09541, 2018.</p>
 <p>[2] Gulrajani I, Ahmed F, Arjovsky M, et al. Improved training of wasserstein gans[C]//Advances in neural information processing systems. 2017: 5767-5777.</p>
 <p>[3] Lee C H, Lee H Y. Cross-lingual transfer learning for question answering[J]. arXiv preprint arXiv:1907.06042, 2019.</p>
 
@@ -410,6 +419,10 @@
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/" data-toggle="tooltip" data-placement="top" title="Gated-Attention Readers for Text Comprehension">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
@@ -543,7 +556,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动机"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#贡献"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">贡献</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#模型"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基于机器翻译的方法"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">基于机器翻译的方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基于GAN的方法"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">基于GAN的方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#双语嵌入"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">双语嵌入</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体架构"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">具体架构</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#文章标题"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">文章标题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#参考文献"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">贡献</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基于机器翻译的方法"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">基于机器翻译的方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#基于GAN的方法"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">基于GAN的方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#双语嵌入"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">双语嵌入</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体架构"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">具体架构</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">文章标题</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">参考文献</span></a></li></ol>
         
         </div>
       </aside>

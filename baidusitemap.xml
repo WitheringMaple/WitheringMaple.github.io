@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://WitheringMaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
-    <lastmod>2020-09-25</lastmod>
+    <loc>http://WitheringMaple.github.io/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/</loc>
+    <lastmod>2020-09-29</lastmod>
   </url>
   <url>
     <loc>http://WitheringMaple.github.io/2020/09/22/Unsupervised-Question-Answering-by-Cloze-Translation/</loc>
-    <lastmod>2020-09-25</lastmod>
+    <lastmod>2020-09-29</lastmod>
   </url>
   <url>
     <loc>http://WitheringMaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
-    <lastmod>2020-09-25</lastmod>
+    <lastmod>2020-09-29</lastmod>
   </url>
   <url>
     <loc>http://WitheringMaple.github.io/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/</loc>
-    <lastmod>2020-09-25</lastmod>
+    <lastmod>2020-09-29</lastmod>
+  </url>
+  <url>
+    <loc>http://WitheringMaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
+    <lastmod>2020-09-29</lastmod>
   </url>
   <url>
     <loc>http://WitheringMaple.github.io/2020/09/20/Experience/</loc>

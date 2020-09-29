@@ -375,6 +375,54 @@
   
 
 
+  <a href="/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/">
+    <h2 class="post-title">
+      Gated-Attention Readers for Text Comprehension
+    </h2>
+    <h3 class="post-subtitle">
+      reading note
+    </h3>
+    <div class="post-content-preview">
+      Motivation
+本文的研究领域为完形填空类型阅读理解，但当时（2016年）关于该方向的工作独立应用多跳推理和注意力，没有以互补的方式将二者结合；此外，它们应用的查询注意力要么是逐token，要么逐句，非细粒度注意力交互，从而使得当时的模型性能不够强。
+Contribution
+
+提出一种新的门控注意力机制，以互补的方式将多跳推理以及注意力相结合，使得在每一跳都更新token表示。
+本文......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by You Hao on
+    2020-09-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Natural Language Processing" title="Natural Language Processing">Natural Language Processing</a>
+    
+    <a href="/tags/#Question Answering" title="Question Answering">Question Answering</a>
+    
+    <a href="/tags/#Cloze-style Machine Reading Comprehension" title="Cloze-style Machine Reading Comprehension">Cloze-style Machine Reading Comprehension</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <div class="top">
+    <div class="iconfont icon-hot animated infinite tada"></div>
+  </div>
+  
+  <!-- top end -->
+  
+
+
   <a href="/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/">
     <h2 class="post-title">
       Cross-Lingual Transfer Learning for Question Answering
@@ -383,10 +431,12 @@
       reading note
     </h3>
     <div class="post-content-preview">
-      动机大多数语言缺乏高质量的训练样本来训练QA模型，并且为QA注释大规模的数据代价很大，因此可以考虑用训练样本丰富的语言如英语，利用其训练数据训练的QA模型将知识迁移到具有较少训练样本的目标语言（甚至无训练样本）。
+      动机
+大多数语言缺乏高质量的训练样本来训练QA模型，并且为QA注释大规模的数据代价很大，因此可以考虑用训练样本丰富的语言如英语，利用其训练数据训练的QA模型将知识迁移到具有较少训练样本的目标语言（甚至无训练样本）。
 贡献
+
 证明句子级的机器翻译模型对解决针对问答的跨语言迁移学习非常有效。
-提出使用域对抗训练方法，即基于GAN的方法，仅使用逐词双语词典来学习QA模型的不变隐式表示，并且其性能匹敌句......
+提出使用域对抗训练方法，即基于GAN的方法，仅使用逐词双语词典来学习QA模型的不变隐式表示，并且其性能匹......
     </div>
   </a>
   
@@ -433,10 +483,12 @@
       reading note
     </h3>
     <div class="post-content-preview">
-      动机高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
+      动机
+高质量的训练数据收集费时费力，虽然Lewis等人[1]使用无监督机器翻译的方法解决该问题，但是该方法有许多缺点，如生成的问题于答案之间有较多的词汇重复；答案类型局限于命名实体或者名词短语，限制学得模型的覆盖度。因此，作者提出两种方法解决上述问题。
 贡献
+
 提出REFQA数据集，即使用维基百科的陈述句及其对引用文档来生成&lt;问题，上下文，答案&gt;三元组。
-利用现有QA模型对REFQA......
+利用现有QA模型对REF......
     </div>
   </a>
   
@@ -479,11 +531,13 @@
       reading note
     </h3>
     <div class="post-content-preview">
-      动机获取问答的训练数据费时费力，尤其是对于很多新领域或者语言，因此作者研究在完全没有训练数据（上下文-问题-答案）的情况下如何解决抽取式问答任务。
+      动机
+获取问答的训练数据费时费力，尤其是对于很多新领域或者语言，因此作者研究在完全没有训练数据（上下文-问题-答案）的情况下如何解决抽取式问答任务。
 贡献
+
 首次提出用于无监督问答的方法，即使用无监督机器翻译方法将生成的完形填空类型问题转化为自然问题。
 提出四种针对答案被隐藏的完形填空类型问题翻译成自然问题的方法，并且通过消融实验分析各种算法对性能的影响。
-该架构具有较强的灵活性和扩展性，可以直......
+该架构具有较强的灵活性和扩展性，可......
     </div>
   </a>
   
@@ -529,8 +583,9 @@
     </h3>
     <div class="post-content-preview">
       Motivation
+
 现实世界中存在很多无标签的数据，而现有的机器阅读理解模型的泛化能力差，即从一个领域学到的知识很难用于其他无标签的数据集的答案预测。甚至即便是BERT这种在巨型无监督数据集上预训练的模型，在某个数据集上微调后用于其他数据集时，性能会急剧降低。
-对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如Ch......
+对于能解决该问题的无监督域适应(Unsupervised Domain Adaptation)的研究较少，即便有，现存研究(如C......
     </div>
   </a>
   
@@ -549,6 +604,8 @@
     <a href="/tags/#Unsupervised Question Answering" title="Unsupervised Question Answering">Unsupervised Question Answering</a>
     
     <a href="/tags/#Domain Adaptation" title="Domain Adaptation">Domain Adaptation</a>
+    
+    <a href="/tags/#Machine Reading Comprehension" title="Machine Reading Comprehension">Machine Reading Comprehension</a>
     
   </div>
   
@@ -652,11 +709,11 @@
     
     
     
-    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="4">Natural Language Processing</a>
+    <a href="/tags/#Natural Language Processing" title="Natural Language Processing" rel="5">Natural Language Processing</a>
     
     
     
-    <a href="/tags/#Question Answering" title="Question Answering" rel="4">Question Answering</a>
+    <a href="/tags/#Question Answering" title="Question Answering" rel="5">Question Answering</a>
     
     
     
@@ -677,6 +734,14 @@
     
     
     <a href="/tags/#Domain Adaptation" title="Domain Adaptation" rel="1">Domain Adaptation</a>
+    
+    
+    
+    <a href="/tags/#Cloze-style Machine Reading Comprehension" title="Cloze-style Machine Reading Comprehension" rel="1">Cloze-style Machine Reading Comprehension</a>
+    
+    
+    
+    <a href="/tags/#Machine Reading Comprehension" title="Machine Reading Comprehension" rel="1">Machine Reading Comprehension</a>
     
     
   </div>
@@ -771,6 +836,10 @@
 <div class="widget">
   <ul>
     
+    <a href="2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/">
+      <li>Gated-Attention Readers for Text Comprehension</li>
+    </a>
+    
     <a href="2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/">
       <li>Cross-Lingual Transfer Learning for Question Answering</li>
     </a>
@@ -787,10 +856,6 @@
       <li>Unsupervised Domain Adaptation on Reading Comprehension</li>
     </a>
     
-    <a href="2020/09/20/Experience/">
-      <li>Experience</li>
-    </a>
-    
   </ul>
 </div>
 
@@ -801,7 +866,7 @@
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archives/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">6</span></li></ul>
     </div>
 
 
@@ -818,12 +883,28 @@
       <li>Travel</li>
     </a>
     
-    <a href="/categories/#Transfer Learning for QA">
-      <li>Transfer Learning for QA</li>
+    <a href="/categories/#Machine Reading Comprehension">
+      <li>Machine Reading Comprehension</li>
     </a>
     
-    <a href="/categories/#Unsupervised Question Answering">
-      <li>Unsupervised Question Answering</li>
+    <a href="/categories/#Question Answering">
+      <li>Question Answering</li>
+    </a>
+    
+    <a href="/categories/#Question Answering">
+      <li>Question Answering</li>
+    </a>
+    
+    <a href="/categories/#Transfer Learning">
+      <li>Transfer Learning</li>
+    </a>
+    
+    <a href="/categories/#Question Answering">
+      <li>Question Answering</li>
+    </a>
+    
+    <a href="/categories/#Machine Reading Comprehension">
+      <li>Machine Reading Comprehension</li>
     </a>
     
   </ul>
