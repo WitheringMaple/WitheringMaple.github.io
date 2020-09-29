@@ -402,14 +402,14 @@
 <p>当预测答案时，先找出查询中被mask的位置，得到在该位置的查询Bi-GRU的最后一层的中间输出，然后再将其与文档GRU的最后完整输出做点积，过一个softmax，得到文档中每个token的概率分布。然后采用AS Reader[1]中的pointer sum attention，对于候选答案集中的每个候选答案，如果候选答案中的token出现在文档中，则将该token的概率累加作为该候选答案的概率，然后再对所有候选对象进行归一化。</p>
 <p>此外，作者还采用一些tricks来增强模型，即字符级嵌入(Character-level Embeddings)以及问题证据共同单词特征(Question Evidence Common Word Feature, qe-comm)。前者由look-up表中的token嵌入以及字符组合模型连接构成，后者则采用Li等人[3]在2016年提出的token级指示器特征，即为文档中的每个token构造一个二维one-hot向量，两个值分别表明该token是否在文档以及其相应的查询中。</p>
 <h1>实验</h1>
-<p><img src="Tag1.png" alt="Tag1"></p>
+<p><img src="Tab1.png" alt="Tag1"></p>
 <p>表1为在WDW(Who Did What)验证集和测试集上的准确率，从表中可知当GA添加tricks中的特征以及将look-up表中的token表示在训练时固定，能取得最佳效果。</p>
-<p><img src="Tag3.png" alt="Tag3"></p>
+<p><img src="Tab3.png" alt="Tag3"></p>
 <p>表2为在CNN, Daily Mail以及CBT(Children’s Book Text)上的验证集和测试集上的准确率，在不同的数据集上，使用不同的设置取得不同的效果。</p>
 <p><img src="Fig2.png" alt="Fig2"></p>
 <p>图2为在不同大小训练集上有和无GA 组件的性能影响，该图说明GA大多数情况下始终比没有情况下性能好。</p>
-<p><img src="Tag2.png" alt="Tag2"></p>
-<p><img src="Tag4.png" alt="Tag4"></p>
+<p><img src="Tab2.png" alt="Tag2"></p>
+<p><img src="Tab4.png" alt="Tag4"></p>
 <p>表2为不同门控函数以及不同跳数对模型性能的影响，表4为没有qe-comm并且固定look-up token表示的情况下的消融分析，前者表明使用乘法比求和以及连接效果好，并且跳数为4时效果最好。后者的消融研究则体现了文中提出多种组件的效果，其中-glove表示不使用现有golve而是使用在语料本身上进行训练的词嵌入，-char表示不使用字符嵌入，-token-attentions指在GA中不使用token之间各维的注意力，该注意力能使得文档关注查询中的特定token而不是真个查询。</p>
 <p><img src="Fig3.png" alt="Fig3"></p>
 <p>上图为逐层即不同跳之前的注意力变化，表明多跳GA能够使文档中的正确答案在每一条都关注查询中不同的token，并且最终关注查询中的mask，而非正确答案则只关注查询中的某一部分并且在最后一跳也无法得到很高的分数。因此，该模型能够取得非常好的效果。</p>
@@ -1168,6 +1168,21 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- <img src="http://WitheringMaple.github.io/img/icon_wechat.png" width="0" height="0" /> -->
 	<!-- Migrate from head to bottom, no longer block render and still work -->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
