@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
+    
+    <lastmod>2020-09-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://witheringmaple.github.io/2020/09/29/Gated-Attention-Readers-for-Text-Comprehension/</loc>
+    
+    <lastmod>2020-09-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://witheringmaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
     
     <lastmod>2020-09-29</lastmod>
     
@@ -16,21 +30,7 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/2020/09/21/Unsupervised-Domain-Adaptation-on-Reading-Comprehension/</loc>
-    
-    <lastmod>2020-09-29</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://witheringmaple.github.io/2020/09/24/Harvesting-and-Refining-Question-Answer-Pairs-for-Unsupervised-QA/</loc>
-    
-    <lastmod>2020-09-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://witheringmaple.github.io/2020/09/25/Cross-Lingual-Transfer-Learning-for-Question-Answering/</loc>
     
     <lastmod>2020-09-29</lastmod>
     
@@ -188,35 +188,7 @@
   </url>
   
   <url>
-    <loc>http://witheringmaple.github.io/categories/Machine-Reading-Comprehension/Question-Answering/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://witheringmaple.github.io/categories/Question-Answering/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://witheringmaple.github.io/categories/Transfer-Learning/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://witheringmaple.github.io/categories/Transfer-Learning/Question-Answering/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://witheringmaple.github.io/categories/Transfer-Learning/Machine-Reading-Comprehension/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
